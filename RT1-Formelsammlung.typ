@@ -97,7 +97,6 @@ align: (center, center),
 #figure(image("media/image19.jpg", width: 40%), caption: [Beispiel Nichtlineares Glied])
 
 #pagebreak()
----
 
 = DGL Lösen im Laplace-Bereich
 + *DGL in Laplace-Bereich transformieren:*
@@ -136,14 +135,18 @@ $d < 0$: instabiles System, nicht realisierbar!
 
 == Relevante Übertragungsfunktionen
 #important[
-  *Führungs-Übertragungsfunktion* (soll 1 sein für $t -> infinity$):
+  === *Führungs-Übertragungsfunktion* (soll 1 sein für $t -> infinity$):
   $ F_W = X / W = (F_R F_S) / (1 + F_R F_S) quad -> quad F_W(s=0) = 1 $
   
-  *Stell-Übertragungsfunktion:*
+  === *Stell-Übertragungsfunktion:*
   $ F_Y = Y / W = F_R / (1 + F_R F_S) $
   
-  *Stör-Übertragungsfunktion* (soll 0 sein für $t -> infinity$):
+  === *Stör-Übertragungsfunktion* (soll 0 sein für $t -> infinity$):
   $ F_Z = X / Z = (-F_S) / (1 + F_R F_S) quad -> quad F_Z(s=0) = 0 $
+
+  === *Regeldifferenz*
+  $ X_d = W - X = W - W  F_W = W (1 - (F_S F_R) / (1 + F_S F_R)) = W / (1 + F_S F_R) $
+
 ]#pagebreak()
 == Grenzwerte (Standard-Regelkreis)
 
