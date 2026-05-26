@@ -175,18 +175,39 @@ $ T_"RK" = "größte Systemzeitkonstante" \/ "langsamste Polstelle" $
 #pagebreak()
 
 = Regler-Auswahl und Strecken
-
 == Regler-Übersicht
 #table(
-  columns: (auto, 1fr),
-  align: (left, center),
-  [*Regler*], [*Übertragungsfunktion $F_R(s)$*],
-  [P-Regler], [$K_P$],
-  [I-Regler], [$K_I / s$],
-  [PI-Regler], [$K_P dot (1 + s dot T_N) / (s dot T_N)$],
-  [PD-Regler (real)], [$K_P dot (1 + T_V dot s) / (1 + T_D dot s)$],
-  [PID-Regler (ideal)], [$K_P dot ((1 + T_N s) dot (1 + T_V s)) / (T_N dot s)$]
+  columns: (auto, auto, 1fr),
+  align: (left, center, left),
+  [*Regler*], [*Übertragungsfunktion $F_R(s)$*], [*Einfluss auf den geschlossenen Kreis*],
+  [P-Regler], [$K_P$], [Macht das System schneller ($omega_0$ steigt), aber oft schwingender (Dämpfung $D$ sinkt).],
+  [I-Regler], [$K_I / s$], [Beseitigt die bleibende Regelabweichung, macht das System aber träger und instabiler ($D$ sinkt stark).],
+  [PI-Regler], [$K_P dot (1 + s dot T_N) / (s dot T_N)$], [Kombiniert P- und I-Vorteile. Erlaubt oft die Kompensation einer Streckenzeitkonstanten.],
+  [PD-Regler \ (real)], [$K_P dot (1 + T_V dot s) / (1 + T_D dot s)$], [Der D-Anteil bremst rechtzeitig ab. **Erhöht die Dämpfung $D$** und stabilisiert das System.],
+  [PID-Regler \ (ideal)], [$K_P dot ((1 + T_N s) dot (1 + T_V s)) / (T_N dot s)$], [Alleskönner: Keine bleibende Abweichung (I), schnell (P) und gut gedämpft (D).],
+  [PID-Regler \ (real / PIDT_D)], [$K_P dot ((1 + T_N s)(1 + T_V s)) / (T_N s (1 + T_D s))$], [Wie idealer PID, aber realisierbar durch Tiefpassfilterung ($T_D$) hoher Frequenzen.]
 )
+
+== Symbolverzeichnis & Erklärungen
+#table(
+  columns: (auto, 1fr),
+  align: (center, left),
+  [*Symbol*], [*Bedeutung / Funktion*],
+  [$K_P$], [**Proportionalbeiwert (Reglerverstärkung):** Bestimmt die Stärke des direkten, proportionalen Eingriffs.],
+  [$K_I$], [**Integrationsbeiwert:** Verstärkungsfaktor des I-Anteils.],
+  [$T_N$], [**Nachstellzeit:** Bestimmt das Gewicht des I-Anteils. Je kleiner $T_N$, desto aggressiver integriert der Regler.],
+  [$T_V$], [**Vorhaltzeit:** Bestimmt das Gewicht des D-Anteils. Sie gibt an, wie stark der Regler auf die Änderungsgeschwindigkeit reagiert.],
+  [$T_D$], [**Verzögerungszeitkonstante (Filterzeit):** Macht den D-Anteil realisierbar, indem sie hochfrequentes Rauschen dämpft (Tiefpass).],
+  [$D$], [**Dämpfungsgrad:** Maß für das Schwingungsverhalten. \ ($D < 1$: schwingend, $D = 1$: aperiodischer Grenzfall, $D > 1$: kriechend)],
+  [$omega_n$], [**Ungedämpfte Eigenkreisfrequenz:** Frequenz, mit der das System ohne Dämpfung schwingen würde.],
+  [$s$], [**Laplace-Variable:** Komplexe Frequenz ($s = sigma + j omega$) zur Transformation vom Zeit- in den Bildbereich.],
+  [$F_S$, $F_R$, $F_0$], [**Übertragungsfunktionen** der Strecke, des Reglers und des offenen Kreises.],
+  [$W(s)$], [**Führungsgröße (Sollwert):** Das Signal, dem der Regelkreis folgen soll.],
+  [$Y(s)$], [**Stellgröße:** Das Ausgangssignal des Reglers, das auf die Strecke einwirkt.],
+  [$X_d(s)$], [**Regelabweichung (Regeldifferenz):** Differenz zwischen Soll- und Istwert ($W - X$).],
+  [$hat(w)$], [**Sprunghöhe:** Die Amplitude des Eingangssprungs ($hat(w) = 1$ für den Einheitssprung).]
+)
+
 #set page(margin: 1cm, flipped: true)
 == Regelstrecken-Übersicht
 
