@@ -145,7 +145,10 @@ $d < 0$: instabiles System, nicht realisierbar!
   $ F_Z = X / Z = (-F_S) / (1 + F_R F_S) quad -> quad F_Z(s=0) = 0 $
 
   === *Regeldifferenz*
-  $ X_d = W - X = W - W  F_W = W (1 - (F_S F_R) / (1 + F_S F_R)) = W / (1 + F_S F_R) $
+  $ X_d =lim_(s -> 0) s (W(s) - X(s)) = lim_(s -> 0) s (W(s) - W (s) F_W (s)) 
+  #linebreak()
+  = lim_(s -> 0) s (W(s) (1 - (F_S (s) F_R (s)) / (1 + F_S (s) F_R (s)))) = lim_(s -> 0) s (W(s) / (1 + F_S (s) F_R (s))) $
+  mit $W(s) = 1/s$ für den Einheitssprung
 
 ]#pagebreak()
 == Grenzwerte (Standard-Regelkreis)
@@ -200,11 +203,6 @@ $ T_"RK" = "größte Systemzeitkonstante" \/ "langsamste Polstelle" $
   [$T_D$], [*Verzögerungszeitkonstante (Filterzeit):* Macht den D-Anteil realisierbar, indem sie hochfrequentes Rauschen dämpft (Tiefpass).],
   [$D$], [*Dämpfungsgrad:* Maß für das Schwingungsverhalten. \ ($D < 1$: schwingend, $D = 1$: aperiodischer Grenzfall, $D > 1$: kriechend)],
   [$omega_n$], [*Ungedämpfte Eigenkreisfrequenz:* Frequenz, mit der das System ohne Dämpfung schwingen würde.],
-  [$s$], [*Laplace-Variable:* Komplexe Frequenz ($s = sigma + j omega$) zur Transformation vom Zeit- in den Bildbereich.],
-  [$F_S$, $F_R$, $F_0$], [*Übertragungsfunktionen* der Strecke, des Reglers und des offenen Kreises.],
-  [$W(s)$], [*Führungsgröße (Sollwert):* Das Signal, dem der Regelkreis folgen soll.],
-  [$Y(s)$], [*Stellgröße:* Das Ausgangssignal des Reglers, das auf die Strecke einwirkt.],
-  [$X_d(s)$], [*Regelabweichung (Regeldifferenz):* Differenz zwischen Soll- und Istwert ($W - X$).],
   [$hat(w)$], [*Sprunghöhe:* Die Amplitude des Eingangssprungs ($hat(w) = 1$ für den Einheitssprung).]
 )
 
@@ -418,14 +416,14 @@ Abklingkonstante: $2 * D * omega_0 = 1/T_2$
 #underline[Regelung $P T_2$ mit realem PD-Regler:] \
 Übertragungsfunktion für offenen Regelkreis $F_O(s)$:
 $ F_O(s) = K_p * (1 + T_V s) / (1 + T_D s) * K_S / ((1 + T_1 s)(1 + T_2 s)) quad text("mit ") T_V = T_1 > T_2 $
-Dyn. Komp. der *größten* Streckenzeitkonstante! \
+dynamische Kompensation der *größten* Streckenzeitkonstante! \
 Abklingkonstante: $2 * D * omega_0 = 1/T_2 + 1/T_D$ (schneller und besser als PI)
 
 #v(1em)
 #underline[Regelung $P T_2$ mit idealem PID-Regler:] \
 Übertragungsfunktion für offenen Regelkreis $F_O(s)$:
 $ F_O(s) = K_p * ((1 + T_N s)(1 + T_V s)) / (T_N s) * K_S / ((1 + T_1 s)(1 + T_2 s)) quad text("mit ") T_N = T_1, T_V = T_2 $
-Dyn. Komp. *beider* Streckenzeitkonstante! $=> F_O(s) = (K_p K_S) / (T_N s)$ \
+dynamische Kompensation *beider* Streckenzeitkonstanten! $=> F_O(s) = (K_p K_S) / (T_N s)$ \
 Führungs-Übertragungsfunktion $F_W(s)$:
 $ F_W(s) = (K_p K_S) / (K_p K_S + T_N s) = 1 / (1 + T_N / (K_p K_S) s) $
 (stationär genau und schwingungsfähig für große $K_P$!)
