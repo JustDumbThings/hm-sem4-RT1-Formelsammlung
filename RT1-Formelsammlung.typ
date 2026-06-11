@@ -44,6 +44,8 @@ $ (d h(t)) / (d t) = 1 / A (Q_"zu"(t) - Q_"ab"(t)) $
 - *Gewichtskraft:* $ F_G = m dot g $
 - *Federkraft:* $ F_s = c dot Delta x = c(x_e - x_a) $
 - *Trägheitskraft:* $ F_T = m dot a = m dot (d^2 x(t)) / (d t^2) $
+- *Dämpfungskraft*: $ F_D = D dot ((d x_e)/(d t) - (d x_a)/(d t) ) $
+
 *(Pfeil entgegen Zählrichtung Position ansetzen! -> Kräfte addieren für Kräftebilanz)*
 == Rechnen mit BSB
 *Wichtig:* Alle Änderungen müssen so vollzogen werden, dass sich bei der Übertragungsfunktion nichts ändert! Schleifenverstärkung ändert sich auch nicht.
@@ -153,7 +155,7 @@ $d < 0$: instabiles System, nicht realisierbar!
 ]#pagebreak()
 == Grenzwerte (Standard-Regelkreis)
 
-+ Grenzwerte Sätze:+
++ Grenzwerte Sätze:
 
     Reminder: $bold(cal(L)(sigma(t)) = 1 / s)$
 
